@@ -13,7 +13,7 @@ In plain words: the browser keeps one JSON profile (in localStorage). A determin
 
 **Model(s) used:** `gemma-4-26b-a4b-it`, an open-weight Gemma model by Google, called through the Gemini API with a key from Google AI Studio ([model page](https://ai.google.dev/gemma)). License: see the official Gemma terms of use on that page (to be confirmed before submission). Optional local mode: run an open model with LM Studio or Ollama and set `AI_PROVIDER=openai_compat`, `AI_BASE_URL`, `AI_MODEL`.
 
-**Tech stack:** React + Vite (plain JavaScript, plain CSS), Vitest, Vercel serverless functions (`api/`), optional MongoDB Atlas for sync.
+**Tech stack:** React + Vite (plain JavaScript, plain CSS), Vitest, Vercel serverless functions (`api/`), MongoDB Atlas for optional accounts (`bcryptjs`, `jose`).
 
 **Datasets:** none. Sample data only; no real student information is in this repo.
 
@@ -32,16 +32,16 @@ npm test
 npm run build
 npm run check:secrets
 ```
-Environment variables (server side only, never `VITE_`): `AI_PROVIDER` (`gemini` or `openai_compat`), `GEMINI_API_KEY`, `GEMINI_MODEL`, `AI_BASE_URL`, `AI_MODEL`, `AI_TIMEOUT_MS`, `AI_MAX_TOKENS`, `MONGODB_URI`, `MONGODB_DB`.
+Environment variables (server side only, never `VITE_`): `AI_PROVIDER` (`gemini` or `openai_compat`), `GEMINI_API_KEY`, `GEMINI_MODEL`, `AI_BASE_URL`, `AI_MODEL`, `AI_TIMEOUT_MS`, `AI_MAX_TOKENS`, `MONGODB_URI`, `MONGODB_DB`, `SESSION_SECRET` (32+ random characters; never put quotes around env values).
 
-Privacy: profile data stays in your browser unless you turn on cloud sync. With sync, the server stores only a hash of your random profile code, and **anyone who has the code can read that data**. Do not share it and do not enter real personal information in the demo.
+Accounts and privacy: you can use Lokkho as a **guest** (data stays in your browser) or create an email and password account so your data follows you across devices. Passwords are hashed with bcrypt and never stored in plain text. The session is a signed JWT in an httpOnly, SameSite=Lax cookie (7 days). Signup and login are rate limited in MongoDB, and state-changing requests must be JSON from our own origin. **This is a prototype: no email verification, no password reset.** Use a throwaway password and no real personal information. You can delete your account and all its data from the Account page.
 
 ## Screenshots / demo
 _To be added in `docs/screenshots/`._
 
 ## What's not done yet
 - Items still marked unverified above need confirmation from the student's department.
-- Cloud sync (`api/profile.js`) is built and unit-tested against an in-memory store, but not yet tried against a live MongoDB Atlas cluster.
+- Accounts (`api/auth.js`, `api/profile.js`) are unit-tested against in-memory stores. Test them on the live site after setting `SESSION_SECRET` and `MONGODB_URI`.
 - Photo import is optional and may be incomplete.
 - Screenshots and the live Vercel deployment are still to do.
 - The GitHub Actions workflow is kept in `ci-pending/ci.yml` until the push token has the `workflow` scope.

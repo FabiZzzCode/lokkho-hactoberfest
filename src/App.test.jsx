@@ -33,4 +33,20 @@ describe('app smoke', () => {
     await userEvent.selectOptions(screen.getByLabelText('Language'), 'bn');
     expect(await screen.findByText('আপনার লক্ষ্য ঠিক করুন')).toBeTruthy();
   });
+  it('a new student with no past results sees a friendly card, not a 3.800 target', async () => {
+    render(<App />);
+    await screen.findByText('Set your goal');
+    await userEvent.click(screen.getByText('Continue'));
+    await screen.findByText(/Registered courses for semester 3/);
+    await userEvent.click(screen.getByRole('button', { name: 'Dashboard' }));
+    expect(await screen.findByText('Add your past results to start')).toBeTruthy();
+    expect(screen.queryByText(/You need an average GPA/)).toBeNull();
+  });
+  it('guest can open the account page with the prototype note', async () => {
+    render(<App />);
+    await screen.findByText('Set your goal');
+    await userEvent.click(screen.getByText('Log in / Sign up'));
+    expect(await screen.findByText(/no email verification/)).toBeTruthy();
+    expect(screen.getByLabelText('Email')).toBeTruthy();
+  });
 });

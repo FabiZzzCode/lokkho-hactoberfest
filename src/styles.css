@@ -60,4 +60,8 @@ tr.dim { color: #8a8f8f; } tr.good td:first-child, .good { color: var(--ok); fon
 .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
 pre { background: #f2ecda; padding: 0.6rem; border-radius: 8px; overflow-x: auto; font-size: 0.85rem; }
 @media (max-width: 600px) { .stats { grid-template-columns: 1fr; } .two-col { grid-template-columns: 1fr; } .tag { display: none; } }
-input.code { inline-size: 100%; font-family: ui-monospace, monospace; }
+.top-end { display: flex; align-items: center; gap: 0.6rem; flex-wrap: wrap; justify-content: flex-end; }
+.btn.small { padding: 0.3rem 0.7rem; font-size: 0.9rem; }
+.save { font-size: 0.85rem; opacity: 0.9; }
+.save-error { background: #fff; color: #8a1c1c; padding: 0.15rem 0.5rem; border-radius: 8px; }
+.check { display: flex; gap: 0.5rem; align-items: center; }

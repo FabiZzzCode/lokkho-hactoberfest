@@ -16,6 +16,19 @@ export default function Dashboard({ profile, go }) {
   const plan = goal.status === 'needs' && courses.length ? planSemester(goal.needed, courses) : [];
   const statusKey = goal.status;
 
+  // Without past results the goal maths would only say "3.800 over 163 credits", which is confusing.
+  if (!d.credits) {
+    return (
+      <div className="stack">
+        <ExamBanner courses={courses} />
+        <Card title={t('dash.start.title')}>
+          <p>{t('dash.start.body')}</p>
+          <button className="btn primary" onClick={() => go('past')}>{t('dash.start.button')}</button>
+        </Card>
+      </div>
+    );
+  }
+
   return (
     <div className="stack">
       <ExamBanner courses={courses} />
@@ -31,7 +44,6 @@ export default function Dashboard({ profile, go }) {
         <Card><p className="eyebrow">{t('dash.creditsDone')}</p><p className="big">{d.credits}</p></Card>
         <Card><p className="eyebrow">{t('dash.creditsLeft')}</p><p className="big">{goal.remaining}</p></Card>
       </div>
-      {!d.credits && <Empty>{t('dash.noPast')} <button className="link" onClick={() => go('past')}>{t('nav.past')}</button></Empty>}
 
       <Card title={t('dash.plan')}>
         {courses.length === 0 ? (
