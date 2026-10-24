@@ -22,9 +22,10 @@ describe('agent handler (mock model)', () => {
     expect(r.status).toBe(502);
     expect(r.body.error.code).toBe('bad_json');
   });
-  it('rejects unknown tools and bad arguments from the model', () => {
+  it('rejects unknown tools; passes bad arguments on as tool errors', () => {
     expect(() => interpret({ tool: 'rm_rf', args: {} }, {})).toThrow(/unknown tool/);
-    expect(() => interpret({ tool: 'marks_needed', args: { x: 1 } }, {})).toThrow(/bad arguments/);
+    // bad args travel on to the browser, whose tool replies with an error for the model to read
+    expect(interpret({ tool: 'marks_needed', args: { x: 1 } }, {})).toEqual({ type: 'tool', tool: 'marks_needed', args: { x: 1 } });
   });
   it('does not allow tool calls once it must finish', () => {
     expect(() => interpret({ tool: 'get_summary', args: {} }, { mustFinish: true })).toThrow();

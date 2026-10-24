@@ -43,7 +43,7 @@ Tools:
 ${JSON.stringify(catalog)}
 Rules:
 - Call only the tools you need (usually 1 to 3). Never repeat a call with the same args.
-- Answer in ${language === 'bn' ? 'Bangla' : 'English'}, in at most 120 words, warm and clear. Use short lines or a list.
+- Answer in ${language === 'bn' ? 'Bangla' : 'English'}, in at most 90 words, warm and clear. Use short lines or a list.
 - Every grade, GPA, CGPA, mark or credit number in your answer must be copied exactly from a tool result. Do not convert, add up or invent numbers.
 - For predictions, state the assumptions from the tool result. Mention that marks ranges and retake rules are unverified defaults when you talk about grades or retakes.
 - Use propose_target only if the student asks to set or plan something; say it is a proposal they can apply.

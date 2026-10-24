@@ -8,6 +8,7 @@ const cfg = () => ({
   localModel: process.env.AI_MODEL,
   timeout: Number(process.env.AI_TIMEOUT_MS) || 25000,
   maxTokens: Number(process.env.AI_MAX_TOKENS) || 1200,
+  thinking: process.env.AI_THINKING ?? 'minimal', // set AI_THINKING=off if the model rejects thinkingLevel
 });
 
 async function post(url, headers, body, timeout) {
@@ -33,7 +34,7 @@ export const textFromGemini = (json) =>
   (json?.candidates?.[0]?.content?.parts ?? []).filter((p) => !p.thought && typeof p.text === 'string').map((p) => p.text).join('').trim();
 export const textFromOpenAi = (json) => (json?.choices?.[0]?.message?.content ?? '').trim();
 
-async function callOnce(prompt, image) {
+async function callOnce(prompt, image, opts = {}) {
   const c = cfg();
   if (c.provider === 'openai_compat') {
     if (!c.baseUrl || !c.localModel) throw new AppError('not_configured', 'Local AI mode needs AI_BASE_URL and AI_MODEL.', 503);
@@ -50,16 +51,23 @@ async function callOnce(prompt, image) {
   const json = await post(
     `https://generativelanguage.googleapis.com/v1beta/models/${c.model}:generateContent`,
     { 'x-goog-api-key': c.key },
-    { contents: [{ role: 'user', parts }], generationConfig: { maxOutputTokens: c.maxTokens, temperature: 0.2 } },
+    { contents: [{ role: 'user', parts }], generationConfig: { maxOutputTokens: c.maxTokens, temperature: 0.2, ...(opts.fast && c.thinking !== 'off' && { thinkingConfig: { thinkingLevel: c.thinking } }) } },
     c.timeout,
   );
   return textFromGemini(json);
 }
 
 /** Calls the model, retrying once on an empty answer. */
-export async function generate(prompt, image) {
-  let text = await callOnce(prompt, image);
-  if (!text) text = await callOnce(prompt, image);
+export async function generate(prompt, image, opts) {
+  let text;
+  try { text = await callOnce(prompt, image, opts); }
+  catch (e) {
+    // Google sometimes answers 5xx for a moment; one quick retry is cheap. Timeouts are not retried (Vercel limit).
+    if (e.code !== 'upstream') throw e;
+    await new Promise((r) => setTimeout(r, 600));
+    text = await callOnce(prompt, image, opts);
+  }
+  if (!text) text = await callOnce(prompt, image, opts);
   if (!text) throw new AppError('empty', 'The AI returned an empty answer. Please try again.', 502);
   return text;
 }

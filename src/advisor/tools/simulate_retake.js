@@ -5,9 +5,9 @@ import { derived, round } from './helpers.js';
 
 export default {
   name: 'simulate_retake',
-  description: 'New CGPA if a past course is retaken or improved with a given grade. Give "course" (code or name) for one course, or omit it to rank the best retakes.',
-  args: { grade: { type: 'string', required: true, max: 3 }, course: { type: 'string', required: false, max: 80 } },
-  run({ grade, course }, ctx) {
+  description: 'New CGPA if a past course is retaken or improved with a given grade. Give "course" (code or name) for one course, or omit it to rank the best retakes. "grade" is the grade you assume for the retake (default A).',
+  args: { grade: { type: 'string', required: false, max: 3 }, course: { type: 'string', required: false, max: 80 } },
+  run({ grade = 'A', course }, ctx) {
     if (pointsOf(grade) == null || pointsOf(grade) === 0) return { error: `"${grade}" is not a passing grade on the scale.` };
     const d = derived(ctx);
     const base = round(d.cgpa);

@@ -50,8 +50,9 @@ export function interpret(reply, { mustFinish }) {
   if (!tool) throw new AppError('bad_step', 'The AI asked for an unknown tool.', 502);
   if (mustFinish) throw new AppError('bad_step', 'The AI asked for a tool when it had to answer.', 502);
   const v = validateArgs(tool, reply.args);
-  if (!v.ok) throw new AppError('bad_step', `The AI sent bad arguments: ${v.error}.`, 502);
-  return { type: 'tool', tool: tool.name, args: v.args };
+  // Bad arguments are passed on as they are: the browser runs the tool, which answers with an error the model can read and fix.
+  const raw = reply.args && typeof reply.args === 'object' && !Array.isArray(reply.args) ? reply.args : {};
+  return { type: 'tool', tool: tool.name, args: v.ok ? v.args : raw };
 }
 
 export function createAgentHandler({ generate = modelGenerate } = {}) {
@@ -64,7 +65,7 @@ export function createAgentHandler({ generate = modelGenerate } = {}) {
       let lastError;
       // One retry: a malformed step is usually fixed by asking again.
       for (let attempt = 0; attempt < 2; attempt++) {
-        try { return ok(interpret(parseReply(await generate(prompt)), req)); }
+        try { return ok(interpret(parseReply(await generate(prompt, undefined, { fast: true })), req)); }
         catch (e) { if (!(e instanceof AppError) || !['bad_json', 'bad_step'].includes(e.code)) throw e; lastError = e; }
       }
       throw lastError;
