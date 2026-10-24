@@ -6,10 +6,10 @@ export class AppError extends Error {
     this.status = status;
   }
 }
-export const fail = (e, cookies) => {
+export const fail = (e) => {
   const err = e instanceof AppError ? e : new AppError('internal', 'Something went wrong on the server.', 500);
   // Log only the code, never user text or secrets.
   if (!(e instanceof AppError)) console.error('[server] unexpected error:', e?.name);
-  return { status: err.status, body: { ok: false, error: { code: err.code, message: err.message } }, ...(cookies && { cookies }) };
+  return { status: err.status, body: { ok: false, error: { code: err.code, message: err.message } } };
 };
-export const ok = (data, cookies) => ({ status: 200, body: { ok: true, data }, ...(cookies && { cookies }) });
+export const ok = (data) => ({ status: 200, body: { ok: true, data } });

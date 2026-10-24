@@ -18,12 +18,12 @@ function scenario(label, ratioOf, ctx, d) {
     const ratio = ratioOf(paceOf(c.scheme));
     const percent = ((n.obtained + ratio * n.remainingMax) / n.total) * 100;
     const grade = gradeForMarks(percent);
-    return { code: c.code, name: c.name, credits: c.credits, assumedShareOfRemainingMarks: round(ratio * 100, 0), expectedPercent: round(percent, 1), grade, points: pointsOf(grade) };
+    return { code: c.code, credits: c.credits, expectedPercent: round(percent, 1), grade, points: pointsOf(grade) };
   });
   const sem = semesterGpa(courses);
   const all = summarize([...d.attempts, ...courses.map((c) => ({ code: c.code, credits: c.credits, grade: c.grade }))], RETAKE_POLICY);
   const goal = goalMath({ target: ctx.profile.goalCgpa, totalCredits: ctx.profile.totalCredits, creditsDone: all.credits, quality: all.quality });
-  return { label, semesterGpa: round(sem.gpa), projectedCgpa: round(all.cgpa), courses: courses.map(({ points, ...c }) => c), targetStatus: goal.status };
+  return { label, semesterGpa: round(sem.gpa), projectedCgpa: round(all.cgpa), courses: courses.map(({ points, credits, ...c }) => c), targetStatus: goal.status };
 }
 
 export default {
