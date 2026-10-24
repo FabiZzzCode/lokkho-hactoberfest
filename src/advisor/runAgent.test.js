@@ -30,7 +30,7 @@ describe('agent loop (mock model)', () => {
     ]);
     const r = await runAgent({ ...base, call });
     expect(r).toMatchObject({ answer: 'You need 3.625.', grounded: true });
-    expect(call.mock.calls[2][0].fix).toEqual({ draft: 'You need 3.77.', numbers: ['3.9'] });
+    expect(call.mock.calls[2][0].fix).toEqual({ draft: 'You need 3.77.', numbers: ['3.77'] });
   });
   it('shows a warning (grounded:false) if the fix is still wrong', async () => {
     const call = script([{ type: 'tool', tool: 'get_summary', args: {} }, { type: 'final', text: 'CGPA is 3.77.' }, { type: 'final', text: 'CGPA is 3.78.' }]);
