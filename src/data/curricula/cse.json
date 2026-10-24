@@ -1,0 +1,305 @@
+{
+  "id": "cse",
+  "name": "CSE (IIUC, one batch)",
+  "totalCredits": 163,
+  "note": "Based on one batch's results page. Verify with your department.",
+  "sample": false,
+  "emptyMessage": "Add your courses or import them.",
+  "semesters": {
+    "1": [
+      {
+        "code": "CSE-1121",
+        "name": "Computer Programming 1",
+        "credits": 3,
+        "type": "theory"
+      },
+      {
+        "code": "CSE-1122",
+        "name": "Computer Programming 1 Lab",
+        "credits": 1.5,
+        "type": "lab"
+      },
+      {
+        "code": "EEE-1121",
+        "name": "Basic Electrical Engineering",
+        "credits": 3,
+        "type": "theory"
+      },
+      {
+        "code": "EEE-1122",
+        "name": "Basic Electrical Engineering Lab",
+        "credits": 1.5,
+        "type": "lab"
+      },
+      {
+        "code": "MATH-1107",
+        "name": "Mathematics I (Differential and Integral Calculus)",
+        "credits": 3,
+        "type": "theory"
+      },
+      {
+        "code": "PHY-1101",
+        "name": "Physics I (Mechanics, Waves, Heat and Thermodynamics)",
+        "credits": 3,
+        "type": "theory"
+      },
+      {
+        "code": "UREL-1106",
+        "name": "Advanced English",
+        "credits": 2,
+        "type": "theory"
+      },
+      {
+        "code": "UREM-1101",
+        "name": "Text of Ethics and Morality",
+        "credits": 1,
+        "type": "theory"
+      }
+    ],
+    "2": [
+      {
+        "code": "CSE-1221",
+        "name": "Computer Programming II",
+        "credits": 3,
+        "type": "theory"
+      },
+      {
+        "code": "CSE-1222",
+        "name": "Computer Programming II Lab",
+        "credits": 1.5,
+        "type": "lab"
+      },
+      {
+        "code": "CSE-1223",
+        "name": "Discrete Mathematics",
+        "credits": 3,
+        "type": "theory"
+      },
+      {
+        "code": "CSE-1230",
+        "name": "Competitive Programming 1",
+        "credits": 1,
+        "type": "theory"
+      },
+      {
+        "code": "EEE-1221",
+        "name": "Electronics",
+        "credits": 3,
+        "type": "theory"
+      },
+      {
+        "code": "EEE-1222",
+        "name": "Electronics Lab",
+        "credits": 1.5,
+        "type": "lab"
+      },
+      {
+        "code": "MATH-1207",
+        "name": "Mathematics II (Geometry and Differential Equations)",
+        "credits": 3,
+        "type": "theory"
+      },
+      {
+        "code": "PHY-1201",
+        "name": "Physics II (Electromagnetism, Optics and Modern Physics)",
+        "credits": 3,
+        "type": "theory"
+      },
+      {
+        "code": "PHY-1204",
+        "name": "Physics II Lab (Electromagnetism, Optics and Modern Physics)",
+        "credits": 1.5,
+        "type": "lab"
+      },
+      {
+        "code": "URED-1201",
+        "name": "Basic Principles of Islam ('Aqidah + 'Ibadah)",
+        "credits": 2,
+        "type": "theory"
+      }
+    ],
+    "3": [
+      {
+        "code": "CHEM-2301",
+        "name": "Chemistry",
+        "credits": 3,
+        "type": "theory"
+      },
+      {
+        "code": "CSE-2321",
+        "name": "Data Structures",
+        "credits": 3,
+        "type": "theory"
+      },
+      {
+        "code": "CSE-2322",
+        "name": "Data Structures Lab",
+        "credits": 1,
+        "type": "lab"
+      },
+      {
+        "code": "CSE-2323",
+        "name": "Digital Logic Design",
+        "credits": 3,
+        "type": "theory"
+      },
+      {
+        "code": "CSE-2324",
+        "name": "Digital Logic Design Lab",
+        "credits": 1.5,
+        "type": "lab"
+      },
+      {
+        "code": "CSE-2340",
+        "name": "Software Development 1",
+        "credits": 2,
+        "type": "theory"
+      },
+      {
+        "code": "MATH-2307",
+        "name": "Mathematics III (Matrices, Linear System of Equations and Vector Analysis)",
+        "credits": 3,
+        "type": "theory"
+      },
+      {
+        "code": "STAT-2311",
+        "name": "Probability and Statistics",
+        "credits": 2,
+        "type": "theory"
+      },
+      {
+        "code": "URED-2302",
+        "name": "Sciences of Quran and Hadith",
+        "credits": 1,
+        "type": "theory"
+      }
+    ],
+    "4": [
+      {
+        "code": "ACC-2401",
+        "name": "Financial and Managerial Accounting",
+        "credits": 2,
+        "type": "theory"
+      },
+      {
+        "code": "CSE-2421",
+        "name": "Computer Algorithms",
+        "credits": 3,
+        "type": "theory"
+      },
+      {
+        "code": "CSE-2422",
+        "name": "Computer Algorithms Lab",
+        "credits": 1,
+        "type": "lab"
+      },
+      {
+        "code": "CSE-2423",
+        "name": "Database Management Systems",
+        "credits": 3,
+        "type": "theory"
+      },
+      {
+        "code": "CSE-2424",
+        "name": "Database Management Systems Lab",
+        "credits": 1.5,
+        "type": "lab"
+      },
+      {
+        "code": "CSE-2427",
+        "name": "Theory of Computation",
+        "credits": 3,
+        "type": "theory"
+      },
+      {
+        "code": "CSE-2430",
+        "name": "Competitive Programming II",
+        "credits": 1,
+        "type": "theory"
+      },
+      {
+        "code": "GEBL-2401",
+        "name": "Bengali Language and Literature",
+        "credits": 2,
+        "type": "theory"
+      },
+      {
+        "code": "MATH-2407",
+        "name": "Mathematics IV (Complex Variable, Fourier Analysis and Z-transform)",
+        "credits": 3,
+        "type": "theory"
+      },
+      {
+        "code": "ME-2412",
+        "name": "Engineering Drawing Lab",
+        "credits": 1,
+        "type": "lab"
+      }
+    ],
+    "5": [
+      {
+        "code": "CSE-3521",
+        "name": "Computer Architecture",
+        "credits": 3,
+        "type": "theory"
+      },
+      {
+        "code": "CSE-3523",
+        "name": "Microprocessors, Microcontrollers and Embedded Systems",
+        "credits": 3,
+        "type": "theory"
+      },
+      {
+        "code": "CSE-3524",
+        "name": "Microprocessors, Microcontrollers and Embedded Systems Lab",
+        "credits": 1,
+        "type": "lab"
+      },
+      {
+        "code": "CSE-3527",
+        "name": "Compiler",
+        "credits": 3,
+        "type": "theory"
+      },
+      {
+        "code": "CSE-3528",
+        "name": "Compiler Lab",
+        "credits": 1,
+        "type": "lab"
+      },
+      {
+        "code": "CSE-3529",
+        "name": "Systems Analysis and Design",
+        "credits": 3,
+        "type": "theory"
+      },
+      {
+        "code": "CSE-3532",
+        "name": "Tools and Technologies for Internet Programming",
+        "credits": 2,
+        "type": "theory"
+      },
+      {
+        "code": "EEE-2421",
+        "name": "Electrical Drives and Instrumentation",
+        "credits": 2,
+        "type": "theory"
+      },
+      {
+        "code": "EEE-2422",
+        "name": "Electrical Drives and Instrumentation Lab",
+        "credits": 1,
+        "type": "lab"
+      },
+      {
+        "code": "URED-3503",
+        "name": "Political Thoughts and Social Behavior",
+        "credits": 1,
+        "type": "theory"
+      }
+    ],
+    "6": [],
+    "7": [],
+    "8": []
+  }
+}

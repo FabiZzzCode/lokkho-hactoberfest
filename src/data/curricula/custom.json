@@ -1,0 +1,18 @@
+{
+  "id": "custom",
+  "name": "Custom (blank)",
+  "totalCredits": 120,
+  "note": "Blank program. Add your own courses.",
+  "sample": true,
+  "emptyMessage": "Add your courses or import them.",
+  "semesters": {
+    "1": [],
+    "2": [],
+    "3": [],
+    "4": [],
+    "5": [],
+    "6": [],
+    "7": [],
+    "8": []
+  }
+}

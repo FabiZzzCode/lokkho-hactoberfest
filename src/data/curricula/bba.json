@@ -1,0 +1,266 @@
+{
+  "id": "bba",
+  "name": "BBA (SAMPLE)",
+  "totalCredits": 130,
+  "note": "SAMPLE curriculum, not official. Edit it to match your department.",
+  "sample": true,
+  "emptyMessage": "Add your courses or import them.",
+  "semesters": {
+    "1": [
+      {
+        "code": "SAMPLE-BBA-101",
+        "name": "Sample BBA Course 1.1",
+        "credits": 3,
+        "type": "theory"
+      },
+      {
+        "code": "SAMPLE-BBA-102",
+        "name": "Sample BBA Course 1.2",
+        "credits": 3,
+        "type": "theory"
+      },
+      {
+        "code": "SAMPLE-BBA-103",
+        "name": "Sample BBA Course 1.3",
+        "credits": 3,
+        "type": "theory"
+      },
+      {
+        "code": "SAMPLE-BBA-104",
+        "name": "Sample BBA Course 1.4",
+        "credits": 3,
+        "type": "theory"
+      },
+      {
+        "code": "SAMPLE-BBA-105",
+        "name": "Sample BBA Course 1.5",
+        "credits": 3,
+        "type": "theory"
+      }
+    ],
+    "2": [
+      {
+        "code": "SAMPLE-BBA-201",
+        "name": "Sample BBA Course 2.1",
+        "credits": 3,
+        "type": "theory"
+      },
+      {
+        "code": "SAMPLE-BBA-202",
+        "name": "Sample BBA Course 2.2",
+        "credits": 3,
+        "type": "theory"
+      },
+      {
+        "code": "SAMPLE-BBA-203",
+        "name": "Sample BBA Course 2.3",
+        "credits": 3,
+        "type": "theory"
+      },
+      {
+        "code": "SAMPLE-BBA-204",
+        "name": "Sample BBA Course 2.4",
+        "credits": 3,
+        "type": "theory"
+      },
+      {
+        "code": "SAMPLE-BBA-205",
+        "name": "Sample BBA Course 2.5",
+        "credits": 3,
+        "type": "theory"
+      }
+    ],
+    "3": [
+      {
+        "code": "SAMPLE-BBA-301",
+        "name": "Sample BBA Course 3.1",
+        "credits": 3,
+        "type": "theory"
+      },
+      {
+        "code": "SAMPLE-BBA-302",
+        "name": "Sample BBA Course 3.2",
+        "credits": 3,
+        "type": "theory"
+      },
+      {
+        "code": "SAMPLE-BBA-303",
+        "name": "Sample BBA Course 3.3",
+        "credits": 3,
+        "type": "theory"
+      },
+      {
+        "code": "SAMPLE-BBA-304",
+        "name": "Sample BBA Course 3.4",
+        "credits": 3,
+        "type": "theory"
+      },
+      {
+        "code": "SAMPLE-BBA-305",
+        "name": "Sample BBA Course 3.5",
+        "credits": 3,
+        "type": "theory"
+      }
+    ],
+    "4": [
+      {
+        "code": "SAMPLE-BBA-401",
+        "name": "Sample BBA Course 4.1",
+        "credits": 3,
+        "type": "theory"
+      },
+      {
+        "code": "SAMPLE-BBA-402",
+        "name": "Sample BBA Course 4.2",
+        "credits": 3,
+        "type": "theory"
+      },
+      {
+        "code": "SAMPLE-BBA-403",
+        "name": "Sample BBA Course 4.3",
+        "credits": 3,
+        "type": "theory"
+      },
+      {
+        "code": "SAMPLE-BBA-404",
+        "name": "Sample BBA Course 4.4",
+        "credits": 3,
+        "type": "theory"
+      },
+      {
+        "code": "SAMPLE-BBA-405",
+        "name": "Sample BBA Course 4.5",
+        "credits": 3,
+        "type": "theory"
+      }
+    ],
+    "5": [
+      {
+        "code": "SAMPLE-BBA-501",
+        "name": "Sample BBA Course 5.1",
+        "credits": 3,
+        "type": "theory"
+      },
+      {
+        "code": "SAMPLE-BBA-502",
+        "name": "Sample BBA Course 5.2",
+        "credits": 3,
+        "type": "theory"
+      },
+      {
+        "code": "SAMPLE-BBA-503",
+        "name": "Sample BBA Course 5.3",
+        "credits": 3,
+        "type": "theory"
+      },
+      {
+        "code": "SAMPLE-BBA-504",
+        "name": "Sample BBA Course 5.4",
+        "credits": 3,
+        "type": "theory"
+      },
+      {
+        "code": "SAMPLE-BBA-505",
+        "name": "Sample BBA Course 5.5",
+        "credits": 3,
+        "type": "theory"
+      }
+    ],
+    "6": [
+      {
+        "code": "SAMPLE-BBA-601",
+        "name": "Sample BBA Course 6.1",
+        "credits": 3,
+        "type": "theory"
+      },
+      {
+        "code": "SAMPLE-BBA-602",
+        "name": "Sample BBA Course 6.2",
+        "credits": 3,
+        "type": "theory"
+      },
+      {
+        "code": "SAMPLE-BBA-603",
+        "name": "Sample BBA Course 6.3",
+        "credits": 3,
+        "type": "theory"
+      },
+      {
+        "code": "SAMPLE-BBA-604",
+        "name": "Sample BBA Course 6.4",
+        "credits": 3,
+        "type": "theory"
+      },
+      {
+        "code": "SAMPLE-BBA-605",
+        "name": "Sample BBA Course 6.5",
+        "credits": 3,
+        "type": "theory"
+      }
+    ],
+    "7": [
+      {
+        "code": "SAMPLE-BBA-701",
+        "name": "Sample BBA Course 7.1",
+        "credits": 3,
+        "type": "theory"
+      },
+      {
+        "code": "SAMPLE-BBA-702",
+        "name": "Sample BBA Course 7.2",
+        "credits": 3,
+        "type": "theory"
+      },
+      {
+        "code": "SAMPLE-BBA-703",
+        "name": "Sample BBA Course 7.3",
+        "credits": 3,
+        "type": "theory"
+      },
+      {
+        "code": "SAMPLE-BBA-704",
+        "name": "Sample BBA Course 7.4",
+        "credits": 3,
+        "type": "theory"
+      },
+      {
+        "code": "SAMPLE-BBA-705",
+        "name": "Sample BBA Course 7.5",
+        "credits": 3,
+        "type": "theory"
+      }
+    ],
+    "8": [
+      {
+        "code": "SAMPLE-BBA-801",
+        "name": "Sample BBA Course 8.1",
+        "credits": 3,
+        "type": "theory"
+      },
+      {
+        "code": "SAMPLE-BBA-802",
+        "name": "Sample BBA Course 8.2",
+        "credits": 3,
+        "type": "theory"
+      },
+      {
+        "code": "SAMPLE-BBA-803",
+        "name": "Sample BBA Course 8.3",
+        "credits": 3,
+        "type": "theory"
+      },
+      {
+        "code": "SAMPLE-BBA-804",
+        "name": "Sample BBA Course 8.4",
+        "credits": 3,
+        "type": "theory"
+      },
+      {
+        "code": "SAMPLE-BBA-805",
+        "name": "Sample BBA Course 8.5",
+        "credits": 3,
+        "type": "theory"
+      }
+    ]
+  }
+}
