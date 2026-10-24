@@ -42,11 +42,13 @@ describe('app smoke', () => {
     expect(await screen.findByText('Add your past results to start')).toBeTruthy();
     expect(screen.queryByText(/You need an average GPA/)).toBeNull();
   });
-  it('guest can open the account page with the prototype note', async () => {
+  it('reset data clears the profile after confirming', async () => {
+    window.confirm = () => true;
     render(<App />);
-    await screen.findByText('Set your goal');
-    await userEvent.click(screen.getByText('Log in / Sign up'));
-    expect(await screen.findByText(/no email verification/)).toBeTruthy();
-    expect(screen.getByLabelText('Email')).toBeTruthy();
+    await userEvent.click(await screen.findByText(/Try a SAMPLE student/));
+    await screen.findByText('Current CGPA');
+    await userEvent.click(screen.getByText('Reset data'));
+    expect(await screen.findByText('Set your goal')).toBeTruthy();
+    expect(localStorage.getItem('lokkho.profile.v1')).toBeNull();
   });
 });

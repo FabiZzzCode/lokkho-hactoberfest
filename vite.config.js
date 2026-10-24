@@ -8,7 +8,7 @@ function devApi(env) {
     name: 'lokkho-dev-api',
     configureServer(server) {
       server.middlewares.use(async (req, res, next) => {
-        const route = req.url?.split('?')[0].match(/^\/api\/(ai|auth|profile)$/)?.[1];
+        const route = req.url?.split('?')[0].match(/^\/api\/(ai|agent)$/)?.[1];
         if (!route) return next();
         let raw = '';
         for await (const chunk of req) raw += chunk;

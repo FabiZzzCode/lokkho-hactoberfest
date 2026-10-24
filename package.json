@@ -11,9 +11,6 @@
     "check:secrets": "sh scripts/check-secrets.sh"
   },
   "dependencies": {
-    "bcryptjs": "^3.0.3",
-    "jose": "^6.2.13",
-    "mongodb": "^7.7.0",
     "react": "^19.3.1",
     "react-dom": "^19.3.1"
   },
