@@ -9,9 +9,10 @@ import CourseTracker from './features/course-tracker/CourseTracker.jsx';
 import RetakeSimulator from './features/retake-simulator/RetakeSimulator.jsx';
 import AiImport from './features/ai-import/AiImport.jsx';
 import Backup from './features/data-backup/Backup.jsx';
+import CloudSync from './features/cloud-sync/CloudSync.jsx';
 import { Notice } from './components/ui.jsx';
 
-const NAV = ['dashboard', 'register', 'past', 'course', 'retake', 'import', 'backup'];
+const NAV = ['dashboard', 'register', 'past', 'course', 'retake', 'import', 'backup', 'sync'];
 
 function Shell({ profile, setProfile, lang, setLang, view, setView }) {
   const { t } = useT();
@@ -31,6 +32,7 @@ function Shell({ profile, setProfile, lang, setLang, view, setView }) {
     retake: <RetakeSimulator profile={profile} />,
     import: <AiImport profile={profile} onSave={(p, next) => save(p, next ?? 'dashboard')} />,
     backup: <Backup profile={profile} onReplace={(p) => save(p, 'dashboard')} onReset={() => { setProfile(null); setView('onboarding'); }} />,
+    sync: <CloudSync profile={profile} onReplace={(p) => save(p, 'dashboard')} />,
   }[view];
 
   return (

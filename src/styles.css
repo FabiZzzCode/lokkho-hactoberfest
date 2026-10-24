@@ -60,3 +60,4 @@ tr.dim { color: #8a8f8f; } tr.good td:first-child, .good { color: var(--ok); fon
 .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
 pre { background: #f2ecda; padding: 0.6rem; border-radius: 8px; overflow-x: auto; font-size: 0.85rem; }
 @media (max-width: 600px) { .stats { grid-template-columns: 1fr; } .two-col { grid-template-columns: 1fr; } .tag { display: none; } }
+input.code { inline-size: 100%; font-family: ui-monospace, monospace; }
