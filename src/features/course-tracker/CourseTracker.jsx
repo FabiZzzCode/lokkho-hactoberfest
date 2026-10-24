@@ -36,6 +36,7 @@ export default function CourseTracker({ profile, onSave, go }) {
             {courses.map((c, i) => <option key={i} value={i}>{c.code} {c.name}</option>)}
           </select>
         </label>
+        {course.targetGrade && <p className="badge">{t('course.target', { grade: course.targetGrade })}</p>}
         <h3>{t('course.marks')}</h3>
         <ul className="rows">
           {course.scheme.map((c, i) => (

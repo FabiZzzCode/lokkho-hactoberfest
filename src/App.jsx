@@ -7,10 +7,11 @@ import PastResults from './features/past-results/PastResults.jsx';
 import Dashboard from './features/dashboard/Dashboard.jsx';
 import CourseTracker from './features/course-tracker/CourseTracker.jsx';
 import RetakeSimulator from './features/retake-simulator/RetakeSimulator.jsx';
+import Advisor from './features/advisor/Advisor.jsx';
 import AiImport from './features/ai-import/AiImport.jsx';
 import { Notice } from './components/ui.jsx';
 
-const NAV = ['dashboard', 'register', 'past', 'course', 'retake', 'import'];
+const NAV = ['dashboard', 'advisor', 'register', 'past', 'course', 'retake', 'import'];
 
 function Shell({ lang, setLang, view, setView }) {
   const { t } = useT();
@@ -28,6 +29,7 @@ function Shell({ lang, setLang, view, setView }) {
     <Onboarding lang={lang} onDone={(p, next) => save(p, next)} />
   ) : {
     dashboard: <Dashboard profile={profile} go={setView} />,
+    advisor: <Advisor profile={profile} onSave={(p) => save(p)} />,
     register: <Registration profile={profile} onSave={(p) => save(p, 'dashboard')} onImport={() => setView('import')} />,
     past: <PastResults profile={profile} onSave={(p) => save(p, 'dashboard')} onImport={() => setView('import')} />,
     course: <CourseTracker profile={profile} onSave={(p) => save(p)} go={setView} />,
