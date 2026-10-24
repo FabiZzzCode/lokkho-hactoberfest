@@ -159,5 +159,15 @@
   "advisor.note": "All numbers come from plain code. The AI only explains. Predictions are estimates based on stated assumptions.",
   "course.target": "Target grade: {grade}",
   "advisor.disclaimer": "Predictions are scenario ranges based on the marks you entered, not guarantees. Real results depend on your future marks and your university's rules.",
-  "advisor.log": "Conversation with the advisor"
+  "advisor.log": "Conversation with the advisor",
+  "ai.err.timeout": "The AI took too long (over 30 seconds).",
+  "ai.err.network": "Could not reach the server. Check your connection.",
+  "ai.retry": "Retry",
+  "ai.photoOff": "Photo import is turned off: it is not verified to work with this model. Paste the text instead.",
+  "nodata.sample": "Load sample student",
+  "nodata.confirm": "Replace your current entries with the SAMPLE student?",
+  "retake.nodata": "Add your past results first, so Lokkho can show which retake helps most.",
+  "advisor.nodata": "Add your past results or some marks first, so the advisor has numbers to check. You can also try the sample student.",
+  "advisor.failed": "The AI could not write an explanation this time. Here is what the tools found:",
+  "advisor.results": "Tool results"
 }

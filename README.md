@@ -55,11 +55,11 @@ flowchart LR
 - **Deterministic (plain code, tested):** GPA/CGPA, goal math, marks needed, predictions, retake gains, exam alerts, the IIUC result parser, and the grounding check.
 - **AI (Gemma):** reads messy pasted text into JSON (always reviewed by you before saving), writes study tips, picks which tool to call and explains tool results in plain language.
 
-**Model(s) used:** `gemma-4-26b-a4b-it`, an open-weight Gemma model by Google, called through the Gemini API with a key from Google AI Studio ([model page](https://ai.google.dev/gemma)). License: see the official Gemma terms of use on that page (to be confirmed before submission). Optional local mode: run an open model with LM Studio or Ollama and set `AI_PROVIDER=openai_compat`, `AI_BASE_URL`, `AI_MODEL`.
+**Model(s) used:** `gemma-4-26b-a4b-it`, a Gemma model by Google, called through the Gemini API with a key from Google AI Studio ([model page](https://ai.google.dev/gemma)). License: to be confirmed from the official Gemma page; this README does not claim one. Optional local mode: run an open model with LM Studio or Ollama and set `AI_PROVIDER=openai_compat`, `AI_BASE_URL`, `AI_MODEL`.
 
-**Honest note about the model.** The core AI feature uses `gemma-4-26b-a4b-it`, an **open-weight** model, but in the hosted demo it is *called through Google's Gemini API* (a hosted service, using a key from Google AI Studio), not run on our own server. The weights are not in this repo. If you want a fully local setup, use the local mode below. The model's exact license is on the official Gemma page and still has to be confirmed before submission; this README does not claim one.
+**Honest note about the model.** The core AI feature uses `gemma-4-26b-a4b-it`, a Gemma model (Google publishes the weights; see its page for the terms), but in the hosted demo it is *called through Google's Gemini API* (a hosted service, using a key from Google AI Studio), not run on our own server. The weights are not in this repo. If you want a fully local setup, use the local mode below. The license is to be confirmed from the official Gemma page; this README does not claim one.
 
-**Local mode (no Google key).** Run an open model in [LM Studio](https://lmstudio.ai) or [Ollama](https://ollama.com), start its OpenAI-compatible server, then put this in `.env.local`:
+**Local mode (no Google key).** Run a local model in [LM Studio](https://lmstudio.ai) or [Ollama](https://ollama.com), start its OpenAI-compatible server, then put this in `.env.local`:
 ```
 AI_PROVIDER=openai_compat
 AI_BASE_URL=http://localhost:1235/v1
@@ -119,14 +119,13 @@ Environment variables (server side only, never `VITE_`): `AI_PROVIDER` (`gemini`
 Privacy: there are no accounts and no database. Your profile is one JSON document in your browser's localStorage and is never stored on our server. Only text you paste into an AI feature, or the numbers the advisor needs, is sent to the model. Use "Reset data" (page footer) to delete it. Do not enter real personal information in the demo.
 
 ## Screenshots / demo
-_Screenshots will be added in `docs/screenshots/`._ A 2-minute demo script is in [DEMO.md](DEMO.md).
+_Screenshots coming._ A 2-minute demo script is in [DEMO.md](DEMO.md).
 
 ## What's not done yet
 - Items marked unverified in **Assumptions** need confirmation from the student's department.
 - **Future work: login and cloud sync.** Data lives only in this browser today (no accounts, no database, no sync between devices). A simple email login with a small database is the planned next step, with a privacy review first.
-- Photo import is optional and may be incomplete.
-- The Gemma license text still has to be confirmed and quoted.
-- The GitHub Actions workflow is kept in `ci-pending/ci.yml` until the push token has the `workflow` scope.
+- **Photo import is turned off** (`src/config/features.js`): a test request with an image to this model returned an API error, so it is unverified. Pasting text works.
+- The Gemma license is to be confirmed from the official Gemma page.
 
 ## Credits
 Built with help from Claude Code. I reviewed the code and can explain it. Gemma by Google. Hacktoberfest Hack Day Chittagong × IEEE CS IIUC SBC.

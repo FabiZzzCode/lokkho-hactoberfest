@@ -58,6 +58,6 @@ describe('agent loop (mock model)', () => {
   });
   it('returns the server error when the model call fails', async () => {
     const call = vi.fn(async () => ({ ok: false, error: { code: 'quota', message: 'busy' } }));
-    expect(await runAgent({ ...base, call })).toEqual({ error: { code: 'quota', message: 'busy' } });
+    expect(await runAgent({ ...base, call })).toEqual({ error: { code: 'quota', message: 'busy' }, steps: [] });
   });
 });

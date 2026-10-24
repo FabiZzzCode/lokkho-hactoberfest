@@ -9,6 +9,7 @@ import CourseTracker from './features/course-tracker/CourseTracker.jsx';
 import RetakeSimulator from './features/retake-simulator/RetakeSimulator.jsx';
 import Advisor from './features/advisor/Advisor.jsx';
 import AiImport from './features/ai-import/AiImport.jsx';
+import { sampleStudent } from './data/sampleStudent.js';
 import { Notice } from './components/ui.jsx';
 
 const NAV = ['dashboard', 'advisor', 'register', 'past', 'course', 'retake', 'import'];
@@ -20,6 +21,12 @@ function Shell({ lang, setLang, view, setView }) {
   // Save a profile and optionally move to another view.
   const save = (p, next) => { setProfile(p); if (next) setView(next); };
 
+  // Only offered when there is no data, but ask first if something was entered.
+  const loadSample = () => {
+    if (profile.current.courses.length && !window.confirm(t('nodata.confirm'))) return;
+    save({ ...sampleStudent(profile.programId), language: lang }, 'dashboard');
+  };
+
   useEffect(() => { document.documentElement.lang = lang; }, [lang]);
   // Use the language stored with the profile (local or account) once it has loaded.
   useEffect(() => { if (ready && profile?.language) setLang(profile.language); }, [ready]); // eslint-disable-line react-hooks/exhaustive-deps
@@ -28,12 +35,12 @@ function Shell({ lang, setLang, view, setView }) {
   const body = !profile ? (
     <Onboarding lang={lang} onDone={(p, next) => save(p, next)} />
   ) : {
-    dashboard: <Dashboard profile={profile} go={setView} />,
-    advisor: <Advisor profile={profile} onSave={(p) => save(p)} />,
+    dashboard: <Dashboard profile={profile} go={setView} onLoadSample={loadSample} />,
+    advisor: <Advisor profile={profile} onSave={(p) => save(p)} go={setView} onLoadSample={loadSample} />,
     register: <Registration profile={profile} onSave={(p) => save(p, 'dashboard')} onImport={() => setView('import')} />,
     past: <PastResults profile={profile} onSave={(p) => save(p, 'dashboard')} onImport={() => setView('import')} />,
     course: <CourseTracker profile={profile} onSave={(p) => save(p)} go={setView} />,
-    retake: <RetakeSimulator profile={profile} />,
+    retake: <RetakeSimulator profile={profile} go={setView} onLoadSample={loadSample} />,
     import: <AiImport profile={profile} onSave={(p, next) => save(p, next ?? 'dashboard')} />,
   }[view];
   const current = view ?? (profile ? 'dashboard' : 'onboarding');

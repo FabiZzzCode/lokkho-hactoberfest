@@ -24,10 +24,10 @@ If the AI is slow or busy, say so honestly: the error message appears and every 
 ## 1:30 to 2:00. How it works (30 seconds)
 "All maths is plain, tested JavaScript: GPA, goal math, marks needed, predictions and retake gains. **Gemma never calculates.** It does three things: it reads messy pasted text into JSON that you review before saving, it chooses which tool to call, and it explains the tool results kindly in English or Bangla.
 
-The browser runs the loop, at most 6 tool calls per question. After the answer, a **grounding check** compares every number in the text with the tool results. If one is invented, the model gets one chance to fix it, otherwise you see a warning. Write actions are only proposals. Your data stays in your browser's localStorage; there is no account and no database. The model is the open-weight Gemma through the Gemini API, with a local mode through LM Studio or Ollama."
+The browser runs the loop, at most 6 tool calls per question. After the answer, a **grounding check** compares every number in the text with the tool results. If one is invented, the model gets one chance to fix it, otherwise you see a warning. Write actions are only proposals. Your data stays in your browser's localStorage; there is no account and no database. The model is Gemma, called through the Gemini API, with a local mode through LM Studio or Ollama."
 
 ## Likely questions
-- **Is the model really open?** Gemma has open weights; the demo calls it through Google's hosted API, and local mode runs it on your own machine. The exact license is still to be quoted from the official page.
+- **Is the model open?** Google publishes Gemma's weights; the demo calls it through Google's hosted API, and local mode runs it on your own machine. The exact license is still to be quoted from the official page.
 - **Are the grading rules official?** No. They are editable defaults in `src/config/grading.config.js`; unverified ones are listed under Assumptions in the README.
 - **What if the AI makes up a number?** The grounding check catches numbers that are not in a tool result and shows a warning chip.
 - **What is next?** Login and cloud sync, then verified rules per university.

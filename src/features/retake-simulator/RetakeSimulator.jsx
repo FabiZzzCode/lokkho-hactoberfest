@@ -3,14 +3,16 @@ import { derive } from '../../engine/profile.js';
 import { rankRetakes } from '../../engine/planning.js';
 import { fmt } from '../../engine/grades.js';
 import { GRADES, RETAKE_POLICY } from '../../config/grading.config.js';
+import NoData from '../../components/NoData.jsx';
 import { Card, Empty, Field, Notice } from '../../components/ui.jsx';
 import { useT } from '../../i18n/index.jsx';
 
-export default function RetakeSimulator({ profile }) {
+export default function RetakeSimulator({ profile, go, onLoadSample }) {
   const { t } = useT();
   const [grade, setGrade] = useState('A');
   const d = derive(profile, RETAKE_POLICY);
   const ranked = rankRetakes(d.attempts, RETAKE_POLICY, grade);
+  if (!d.credits) return <NoData title={t('retake.title')} body={t('retake.nodata')} go={go} onLoadSample={onLoadSample} />;
   return (
     <Card title={t('retake.title')}>
       <p>{t('retake.intro')}</p>

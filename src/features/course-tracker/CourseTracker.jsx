@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { courseNeeds } from '../../engine/course.js';
 import { fmt } from '../../engine/grades.js';
+import AiError from '../../components/AiError.jsx';
 import { callAi } from '../../api.js';
 import { Card, Empty, Notice, Spinner, UnverifiedNote } from '../../components/ui.jsx';
 import { useT } from '../../i18n/index.jsx';
@@ -24,7 +25,7 @@ export default function CourseTracker({ profile, onSave, go }) {
   const runScheme = async () => {
     setAi({ ...ai, busy: true, error: null, review: null });
     const r = await callAi('importScheme', { text: ai.text });
-    setAi((a) => ({ ...a, busy: false, error: r.ok ? null : r.error.message, review: r.ok ? r.data.components : null }));
+    setAi((a) => ({ ...a, busy: false, error: r.ok ? null : r.error, review: r.ok ? r.data.components : null }));
   };
   const applyScheme = () => { update({ scheme: ai.review.map((c) => ({ ...c, obtained: null })) }); setAi({ text: '', busy: false, error: null, review: null }); };
 
@@ -81,7 +82,7 @@ export default function CourseTracker({ profile, onSave, go }) {
         <textarea rows={3} aria-label={t('course.importScheme')} placeholder={t('course.schemePh')} value={ai.text} onChange={(e) => setAi({ ...ai, text: e.target.value })} />
         <button className="btn" disabled={!ai.text.trim() || ai.busy} onClick={runScheme}>{t('ai.run')}</button>
         {ai.busy && <Spinner label={t('ai.working')} />}
-        {ai.error && <Notice kind="error">{ai.error} {t('ai.manual')}</Notice>}
+        {ai.error && <AiError error={ai.error} onRetry={runScheme} />}
         {ai.review && (
           <div className="stack">
             <Notice kind="info">{t('ai.reviewFirst')}</Notice>

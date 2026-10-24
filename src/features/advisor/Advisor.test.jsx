@@ -61,4 +61,25 @@ describe('Advisor UI', () => {
     expect(await screen.findByText(/The AI service is busy/)).toBeTruthy();
     expect(screen.getByText(/enter everything by hand/)).toBeTruthy();
   });
+  it('on a model failure it still shows the tool results and a Retry button', async () => {
+    const replies = [{ ok: true, data: { type: 'tool', tool: 'required_avg', args: {} } }, { ok: false, error: { code: 'timeout', message: 'x' } }];
+    globalThis.fetch = vi.fn(async () => ({ json: async () => replies.shift() ?? { ok: false, error: { code: 'timeout', message: 'x' } } }));
+    await openAdvisor();
+    await userEvent.click(screen.getByRole('button', { name: 'Can I reach my target?' }));
+    expect(await screen.findByText(/could not write an explanation/)).toBeTruthy();
+    expect(screen.getByText(/requiredAverageGpa/)).toBeTruthy();
+    expect(screen.getByText(/took too long/)).toBeTruthy();
+    expect(screen.getByRole('button', { name: 'Retry' })).toBeTruthy();
+  });
+  it('with no data the Advisor, Dashboard and Retake tabs offer the sample student, not zeros', async () => {
+    render(<App />);
+    await screen.findByText('Set your goal');
+    await userEvent.click(screen.getByText('Continue'));
+    await screen.findByText(/Registered courses for semester 3/);
+    for (const tab of ['Dashboard', 'Advisor', 'Retake & improve']) {
+      await userEvent.click(screen.getByRole('button', { name: tab }));
+      expect(await screen.findByRole('button', { name: 'Load sample student' })).toBeTruthy();
+      expect(screen.queryByText('0.000')).toBeNull();
+    }
+  });
 });

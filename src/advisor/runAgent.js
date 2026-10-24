@@ -14,7 +14,7 @@ export async function runAgent({ question, language, ctx, call, onStep = () => {
 
   while (true) {
     const r = await call({ question, language, steps, mustFinish: steps.length >= MAX_TOOL_CALLS });
-    if (!r.ok) return { error: r.error };
+    if (!r.ok) return { error: r.error, steps };
     if (r.data.type === 'tool') {
       const result = runTool(r.data.tool, r.data.args, ctx);
       const step = { tool: r.data.tool, args: r.data.args, result };

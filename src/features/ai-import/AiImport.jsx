@@ -1,4 +1,6 @@
 import { useState } from 'react';
+import { IMAGE_IMPORT } from '../../config/features.js';
+import AiError from '../../components/AiError.jsx';
 import { callAi } from '../../api.js';
 import CourseListEditor from '../../components/CourseListEditor.jsx';
 import { rowsToCourses } from '../registration/registration.js';
@@ -22,13 +24,13 @@ export default function AiImport({ profile, onSave }) {
 
   const pick = async (file) => {
     if (!file) return setImage(null);
-    if (file.size > MAX_IMG) return setState({ busy: false, error: t('ai.imageBig'), rows: null });
+    if (file.size > MAX_IMG) return setState({ busy: false, error: { code: 'invalid_input', message: t('ai.imageBig') }, rows: null });
     setImage({ mime: file.type, data: await readB64(file), name: file.name });
   };
   const run = async () => {
     setState({ busy: true, error: null, rows: null });
     const r = await callAi('importCourses', { text, image: image ? { mime: image.mime, data: image.data } : undefined });
-    setState(r.ok ? { busy: false, error: null, rows: r.data.courses.map((c) => ({ ...c, checked: true })) } : { busy: false, error: r.error.message, rows: null });
+    setState(r.ok ? { busy: false, error: null, rows: r.data.courses.map((c) => ({ ...c, checked: true })) } : { busy: false, error: r.error, rows: null });
   };
   const apply = () => {
     const picked = state.rows.filter((r) => r.checked);
@@ -48,10 +50,13 @@ export default function AiImport({ profile, onSave }) {
     <Card title={t('ai.importTitle')}>
       <p>{t('ai.importHelp')}</p>
       <textarea rows={6} maxLength={8000} aria-label={t('ai.importTitle')} value={text} onChange={(e) => setText(e.target.value)} />
-      <label className="field"><span>{t('ai.photo')}</span><input type="file" accept="image/png,image/jpeg,image/webp" onChange={(e) => pick(e.target.files[0])} /></label>
+      <label className="field"><span>{t('ai.photo')}</span>
+        <input type="file" accept="image/png,image/jpeg,image/webp" disabled={!IMAGE_IMPORT} onChange={(e) => pick(e.target.files[0])} />
+        {!IMAGE_IMPORT && <small>{t('ai.photoOff')}</small>}
+      </label>
       <button className="btn primary" disabled={(!text.trim() && !image) || state.busy} onClick={run}>{t('ai.run')}</button>
       {state.busy && <Spinner label={t('ai.working')} />}
-      {state.error && <Notice kind="error">{state.error} {t('ai.manual')}</Notice>}
+      {state.error && <AiError error={state.error} onRetry={run} />}
       {state.rows && (
         <div className="stack">
           <p className="badge">{t('ai.label')}</p>

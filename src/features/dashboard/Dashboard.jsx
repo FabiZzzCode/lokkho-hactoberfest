@@ -5,10 +5,11 @@ import { RETAKE_POLICY } from '../../config/grading.config.js';
 import ExamBanner from '../exam-alerts/ExamBanner.jsx';
 import Coach from '../coach/Coach.jsx';
 import WhatIf from '../ai-import/WhatIf.jsx';
+import NoData from '../../components/NoData.jsx';
 import { Card, Empty, UnverifiedNote } from '../../components/ui.jsx';
 import { useT } from '../../i18n/index.jsx';
 
-export default function Dashboard({ profile, go }) {
+export default function Dashboard({ profile, go, onLoadSample }) {
   const { t } = useT();
   const d = derive(profile, RETAKE_POLICY);
   const { goal } = d;
@@ -21,10 +22,7 @@ export default function Dashboard({ profile, go }) {
     return (
       <div className="stack">
         <ExamBanner courses={courses} />
-        <Card title={t('dash.start.title')}>
-          <p>{t('dash.start.body')}</p>
-          <button className="btn primary" onClick={() => go('past')}>{t('dash.start.button')}</button>
-        </Card>
+        <NoData title={t('dash.start.title')} body={t('dash.start.body')} go={go} onLoadSample={onLoadSample} />
       </div>
     );
   }

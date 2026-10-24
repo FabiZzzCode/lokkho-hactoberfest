@@ -34,3 +34,12 @@ describe('prompts', () => {
     expect(p.match(/DATA>>>/g)).toHaveLength(2); // the one closing delimiter + the one in the rules sentence
   });
 });
+
+import { handleAi as _handleAi } from '../handlers/ai.js';
+describe('photo import is off', () => {
+  it('rejects an image with a clear message instead of calling the model', async () => {
+    const r = await _handleAi({ method: 'POST', ip: 'img-test', body: { action: 'importCourses', image: { mime: 'image/png', data: 'AAAA' } } });
+    expect(r.status).toBe(400);
+    expect(r.body.error.message).toMatch(/Photo import is turned off/);
+  });
+});

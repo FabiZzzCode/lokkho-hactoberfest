@@ -77,3 +77,4 @@ pre { background: #f2ecda; padding: 0.6rem; border-radius: 8px; overflow-x: auto
 .proposal { border: 1px dashed var(--teal); border-radius: 12px; padding: 0.6rem 0.8rem; margin-block-start: 0.6rem; }
 .ask { margin-block-start: 0.5rem; }
 .small-text { font-size: 0.8rem; }
+.results { background: #f3efe0; padding: 0.6rem; border-radius: 10px; overflow-x: auto; font-size: 0.8rem; white-space: pre-wrap; overflow-wrap: anywhere; }

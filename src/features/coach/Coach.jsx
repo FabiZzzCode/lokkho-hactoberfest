@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { callAi } from '../../api.js';
+import AiError from '../../components/AiError.jsx';
 import { Card, Notice, Spinner } from '../../components/ui.jsx';
 import { useT } from '../../i18n/index.jsx';
 
@@ -27,14 +28,14 @@ export default function Coach({ profile, derived, plan }) {
   const run = async () => {
     setState({ busy: true, error: null, tips: null, rejected: 0 });
     const r = await callAi('coach', { facts: buildFacts(profile, derived, plan) });
-    setState(r.ok ? { busy: false, error: null, tips: r.data.tips, rejected: r.data.rejected } : { busy: false, error: r.error.message, tips: null, rejected: 0 });
+    setState(r.ok ? { busy: false, error: null, tips: r.data.tips, rejected: r.data.rejected } : { busy: false, error: r.error, tips: null, rejected: 0 });
   };
   return (
     <Card title={t('coach.title')}>
       <p className="muted">{t('coach.help')}</p>
       <button className="btn" onClick={run} disabled={state.busy || !derived.credits}>{t('coach.run')}</button>
       {state.busy && <Spinner label={t('ai.working')} />}
-      {state.error && <Notice kind="error">{state.error} {t('ai.manual')}</Notice>}
+      {state.error && <AiError error={state.error} onRetry={run} />}
       {state.tips && (
         <>
           <p className="badge">{t('ai.label')}</p>
