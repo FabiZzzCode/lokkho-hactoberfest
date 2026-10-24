@@ -36,15 +36,15 @@ export const PROGRAM_TOTAL_CREDITS = { cse: 163, bba: 130, custom: 120 };
 
 export const SCHEME_TEMPLATES = {
   theory: [
-    { name: 'attendance', max: 10 },
-    { name: 'assignment', max: 10 },
-    { name: 'mid', max: 30 },
-    { name: 'final', max: 50 },
+    { name: 'Attendance', max: 10 },
+    { name: 'CT / Quiz', max: 10 },
+    { name: 'Mid', max: 30 },
+    { name: 'Final', max: 50 },
   ],
   lab: [
-    { name: 'attendance', max: 10 },
-    { name: 'labWork', max: 40 },
-    { name: 'labFinal', max: 50 },
+    { name: 'Attendance', max: 10 },
+    { name: 'Lab work', max: 40 },
+    { name: 'Lab final', max: 50 },
   ],
 };
 

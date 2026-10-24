@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { IMAGE_IMPORT } from '../../config/features.js';
+import TextFileInput from '../../components/TextFileInput.jsx';
 import AiError from '../../components/AiError.jsx';
 import { callAi } from '../../api.js';
 import CourseListEditor from '../../components/CourseListEditor.jsx';
@@ -50,6 +51,7 @@ export default function AiImport({ profile, onSave }) {
     <Card title={t('ai.importTitle')}>
       <p>{t('ai.importHelp')}</p>
       <textarea rows={6} maxLength={8000} aria-label={t('ai.importTitle')} value={text} onChange={(e) => setText(e.target.value)} />
+      <TextFileInput onText={(x) => setText(x.slice(0, 8000))} />
       <label className="field"><span>{t('ai.photo')}</span>
         <input type="file" accept="image/png,image/jpeg,image/webp" disabled={!IMAGE_IMPORT} onChange={(e) => pick(e.target.files[0])} />
         {!IMAGE_IMPORT && <small>{t('ai.photoOff')}</small>}

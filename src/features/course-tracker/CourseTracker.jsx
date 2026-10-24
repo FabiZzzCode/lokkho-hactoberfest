@@ -6,7 +6,7 @@ import { callAi } from '../../api.js';
 import { Card, Empty, Notice, Spinner, UnverifiedNote } from '../../components/ui.jsx';
 import { useT } from '../../i18n/index.jsx';
 
-export default function CourseTracker({ profile, onSave, go }) {
+export default function CourseTracker({ profile, onSave, go, onAsk }) {
   const { t } = useT();
   const courses = profile.current.courses;
   const [idx, setIdx] = useState(0);
@@ -60,6 +60,7 @@ export default function CourseTracker({ profile, onSave, go }) {
       </Card>
 
       <Card title={t('course.need')}>
+        <button className="btn primary" onClick={() => onAsk(t('course.askQ', { course: `${course.code} ${course.name}` }))}>{t('course.ask')}</button>
         <p>{t('course.sofar', { got: needs.obtained, left: needs.remainingMax, total: needs.total })}</p>
         <div className="table-wrap">
           <table>

@@ -21,7 +21,7 @@ The Advisor tab is a small chat. You ask a question (or press one of four quick 
 | `get_summary` | current CGPA, credits done and left, target CGPA |
 | `required_avg` | GPA needed on the remaining credits; says clearly when the target is impossible |
 | `marks_needed` | for one course, marks needed in the remaining components for each grade |
-| `plan_courses` | a target grade and marks needed for every current course |
+| `plan_courses` | for every current course: the target grade that reaches your goal, the marks needed in the parts still to come (usually the final) given the attendance, CT and mid marks you entered, and the best grade still possible |
 | `predict_result` | best, likely and worst semester GPA and CGPA, with the assumptions listed |
 | `simulate_retake` | new CGPA if a course is retaken or improved with grade X, or a ranking of retakes |
 | `exam_alerts` | mid and final exams in the next 30 days |
@@ -124,7 +124,7 @@ _Screenshots coming._ A 2-minute demo script is in [DEMO.md](DEMO.md).
 ## What's not done yet
 - Items marked unverified in **Assumptions** need confirmation from the student's department.
 - **Future work: login and cloud sync.** Data lives only in this browser today (no accounts, no database, no sync between devices). A simple email login with a small database is the planned next step, with a privacy review first.
-- **Photo import is turned off** (`src/config/features.js`): a test request with an image to this model returned an API error, so it is unverified. Pasting text works.
+- **Photo import is turned off** (`src/config/features.js`): a test request with an image to this model returned an API error, so it is unverified. Pasting text works, and you can load a `.txt` or `.csv` file (read in your browser, never uploaded).
 - The Gemma license is to be confirmed from the official Gemma page.
 
 ## Credits

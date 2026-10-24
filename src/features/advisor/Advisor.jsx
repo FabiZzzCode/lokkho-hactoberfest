@@ -10,7 +10,7 @@ import { RETAKE_POLICY } from '../../config/grading.config.js';
 import { Card, Notice, Spinner } from '../../components/ui.jsx';
 import { useT } from '../../i18n/index.jsx';
 
-const QUICK = ['reach', 'predict', 'each', 'retake'];
+const QUICK = ['reach', 'predict', 'each', 'final', 'retake'];
 
 function Steps({ steps }) {
   const { t } = useT();
@@ -45,7 +45,7 @@ function Proposal({ proposal, onApply, onDismiss }) {
   );
 }
 
-export default function Advisor({ profile, onSave, go, onLoadSample }) {
+export default function Advisor({ profile, onSave, go, onLoadSample, initialQuestion, onQuestionUsed }) {
   const { t } = useT();
   const [messages, setMessages] = useState([]); // {role:'user'|'bot', text, steps, proposals, grounded, ungrounded}
   const [live, setLive] = useState(null); // steps of the running question
@@ -55,6 +55,11 @@ export default function Advisor({ profile, onSave, go, onLoadSample }) {
   const inputRef = useRef(null);
   const profileRef = useRef(profile);
   profileRef.current = profile;
+
+  // A question sent from another page (for example the Courses page) is asked once.
+  useEffect(() => {
+    if (initialQuestion && hasData) { onQuestionUsed?.(); ask(initialQuestion); }
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   // The input is disabled while the advisor works; hand keyboard focus back when it finishes.
   useEffect(() => { if (!live && messages.length) inputRef.current?.focus(); }, [live]); // eslint-disable-line react-hooks/exhaustive-deps

@@ -169,5 +169,11 @@
   "retake.nodata": "Add your past results first, so Lokkho can show which retake helps most.",
   "advisor.nodata": "Add your past results or some marks first, so the advisor has numbers to check. You can also try the sample student.",
   "advisor.failed": "The AI could not write an explanation this time. Here is what the tools found:",
-  "advisor.results": "Tool results"
+  "advisor.results": "Tool results",
+  "file.label": "Or load a text file (.txt or .csv)",
+  "file.help": "Read in your browser only. Nothing is uploaded.",
+  "file.big": "That file is too large (max 200 KB).",
+  "advisor.q.final": "What marks do I need in the final to meet my goal?",
+  "course.ask": "Ask the AI advisor what I need",
+  "course.askQ": "I entered my marks for {course}. What marks do I need in the final and the other remaining parts to meet my goal?"
 }

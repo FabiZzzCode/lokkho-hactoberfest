@@ -17,6 +17,7 @@ const NAV = ['dashboard', 'advisor', 'register', 'past', 'course', 'retake', 'im
 function Shell({ lang, setLang, view, setView }) {
   const { t } = useT();
   const { profile, setProfile, ready } = useProfile();
+  const [question, setQuestion] = useState(null); // a question sent to the Advisor from another page
 
   // Save a profile and optionally move to another view.
   const save = (p, next) => { setProfile(p); if (next) setView(next); };
@@ -36,10 +37,10 @@ function Shell({ lang, setLang, view, setView }) {
     <Onboarding lang={lang} onDone={(p, next) => save(p, next)} />
   ) : {
     dashboard: <Dashboard profile={profile} go={setView} onLoadSample={loadSample} />,
-    advisor: <Advisor profile={profile} onSave={(p) => save(p)} go={setView} onLoadSample={loadSample} />,
+    advisor: <Advisor profile={profile} onSave={(p) => save(p)} go={setView} onLoadSample={loadSample} initialQuestion={question} onQuestionUsed={() => setQuestion(null)} />,
     register: <Registration profile={profile} onSave={(p) => save(p, 'dashboard')} onImport={() => setView('import')} />,
     past: <PastResults profile={profile} onSave={(p) => save(p, 'dashboard')} onImport={() => setView('import')} />,
-    course: <CourseTracker profile={profile} onSave={(p) => save(p)} go={setView} />,
+    course: <CourseTracker profile={profile} onSave={(p) => save(p)} go={setView} onAsk={(q) => { setQuestion(q); setView('advisor'); }} />,
     retake: <RetakeSimulator profile={profile} go={setView} onLoadSample={loadSample} />,
     import: <AiImport profile={profile} onSave={(p, next) => save(p, next ?? 'dashboard')} />,
   }[view];

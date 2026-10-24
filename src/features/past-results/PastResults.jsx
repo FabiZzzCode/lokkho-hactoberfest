@@ -6,6 +6,8 @@ import GradeSelect from '../../components/GradeSelect.jsx';
 import { Card, Notice } from '../../components/ui.jsx';
 import { useT } from '../../i18n/index.jsx';
 
+import TextFileInput from '../../components/TextFileInput.jsx';
+
 export default function PastResults({ profile, onSave, onImport }) {
   const { t } = useT();
   const [draft, setDraft] = useState(() => buildDraft(profile));
@@ -40,6 +42,7 @@ export default function PastResults({ profile, onSave, onImport }) {
       <Card title={t('past.paste')}>
         <p>{t('past.pasteHelp')}</p>
         <textarea rows={5} aria-label={t('past.paste')} value={paste} onChange={(e) => setPaste(e.target.value)} />
+        <TextFileInput onText={setPaste} />
         <div className="actions">
           <button className="btn" onClick={runParse} disabled={!paste.trim()}>{t('past.parse')}</button>
           <button className="btn" onClick={onImport}>{t('past.useAi')}</button>
