@@ -51,7 +51,7 @@ input[type=checkbox] { inline-size: 1.2rem; block-size: 1.2rem; accent-color: va
 .notice-error, .notice-alert { background: var(--bad-bg); color: var(--bad); }
 .notice-alert { border: 2px solid var(--accent); color: #7a2d00; background: #ffe9d4; }
 .muted { color: var(--muted); } .empty { padding: 0.5rem 0; }
-.badge { display: inline-block; background: var(--accent); color: #fff; font-size: 0.75rem; padding: 0.1rem 0.6rem; border-radius: 999px; font-weight: 700; margin: 0.5rem 0 0; }
+.badge { display: inline-block; background: #a84c0c; color: #fff; /* 5.7:1 contrast */ font-size: 0.75rem; padding: 0.1rem 0.6rem; border-radius: 999px; font-weight: 700; margin: 0.5rem 0 0; }
 .table-wrap { overflow-x: auto; }
 table { border-collapse: collapse; inline-size: 100%; }
 th, td { text-align: start; padding: 0.45rem 0.6rem; border-block-end: 1px solid var(--line); }

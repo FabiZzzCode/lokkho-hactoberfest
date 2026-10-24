@@ -90,6 +90,7 @@ describe('predict_result', () => {
     expect([r.best.projectedCgpa, r.likely.projectedCgpa, r.worst.projectedCgpa]).toEqual([3.667, 3.667, 3.333]);
     expect([r.best.semesterGpa, r.worst.semesterGpa]).toEqual([4, 3]);
     expect(r.assumptions.length).toBeGreaterThanOrEqual(3);
+    expect(r.disclaimer).toMatch(/not guarantees/);
   });
   it('uses the fallback pace of 70% when nothing is marked', () => {
     const c = fixture(); c.profile.current.courses[0].scheme.forEach((s) => { s.obtained = null; });

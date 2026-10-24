@@ -5,6 +5,8 @@ import { courseNeeds } from '../../engine/course.js';
 import { PREDICTION } from '../config.js';
 import { derived, round } from './helpers.js';
 
+export const DISCLAIMER = 'Predictions are scenario ranges from the marks entered so far, not guarantees.';
+
 // Share of the marks scored so far; the student's own pace is the "likely" assumption.
 function paceOf(scheme) {
   const done = scheme.filter((c) => c.obtained != null && c.obtained !== '');
@@ -35,6 +37,7 @@ export default {
     const d = derived(ctx);
     const { fallbackRatio, worstRatio, bestRatio } = PREDICTION;
     return {
+      disclaimer: DISCLAIMER,
       assumptions: [
         `Best: full marks (${bestRatio * 100}%) on every remaining component.`,
         `Likely: the same share of marks as scored so far (${fallbackRatio * 100}% if nothing is marked yet).`,

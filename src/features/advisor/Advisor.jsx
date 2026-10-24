@@ -1,4 +1,4 @@
-import { useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { callAgent } from '../../api.js';
 import { runAgent } from '../../advisor/runAgent.js';
 import { MAX_QUESTION_CHARS } from '../../advisor/config.js';
@@ -36,8 +36,12 @@ export default function Advisor({ profile, onSave }) {
   const [live, setLive] = useState(null); // steps of the running question
   const [error, setError] = useState(null);
   const [text, setText] = useState('');
+  const inputRef = useRef(null);
   const profileRef = useRef(profile);
   profileRef.current = profile;
+
+  // The input is disabled while the advisor works; hand keyboard focus back when it finishes.
+  useEffect(() => { if (!live && messages.length) inputRef.current?.focus(); }, [live]); // eslint-disable-line react-hooks/exhaustive-deps
 
   const ask = async (question) => {
     const q = question.trim();
@@ -61,11 +65,12 @@ export default function Advisor({ profile, onSave }) {
   return (
     <Card title={t('advisor.title')}>
       <p className="muted">{t('advisor.intro')}</p>
+      <Notice kind="warn">{t('advisor.disclaimer')}</Notice>
       <div className="quick" role="group" aria-label={t('advisor.quick')}>
         {QUICK.map((k) => <button key={k} className="btn" disabled={!!live} onClick={() => ask(t(`advisor.q.${k}`))}>{t(`advisor.q.${k}`)}</button>)}
       </div>
 
-      <div className="chat" aria-live="polite">
+      <div className="chat" role="log" aria-live="polite" aria-label={t('advisor.log')}>
         {messages.length === 0 && !live && <p className="muted empty">{t('advisor.empty')}</p>}
         {messages.map((m, mi) => m.role === 'user' ? (
           <p key={mi} className="msg msg-user">{m.text}</p>
@@ -90,7 +95,7 @@ export default function Advisor({ profile, onSave }) {
       {error && <Notice kind="error">{error} {t('ai.manual')}</Notice>}
 
       <form className="row ask" onSubmit={(e) => { e.preventDefault(); ask(text); }}>
-        <input className="grow" maxLength={MAX_QUESTION_CHARS} aria-label={t('advisor.input')} placeholder={t('advisor.placeholder')} value={text} onChange={(e) => setText(e.target.value)} disabled={!!live} />
+        <input ref={inputRef} className="grow" maxLength={MAX_QUESTION_CHARS} aria-label={t('advisor.input')} placeholder={t('advisor.placeholder')} value={text} onChange={(e) => setText(e.target.value)} disabled={!!live} />
         <button className="btn primary" type="submit" disabled={!!live || !text.trim()}>{t('advisor.send')}</button>
       </form>
       <p className="muted small-text">{t('advisor.note')}</p>

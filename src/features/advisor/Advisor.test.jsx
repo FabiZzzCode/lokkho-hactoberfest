@@ -21,11 +21,21 @@ describe('Advisor UI', () => {
     mockModel([{ type: 'tool', tool: 'required_avg', args: {} }, { type: 'final', text: 'You need an average GPA of 3.675 on 122.5 credits.' }]);
     await openAdvisor();
     expect(screen.getByText(/Pick a quick question/)).toBeTruthy();
+    expect(screen.getByText(/not guarantees/)).toBeTruthy(); // visible disclaimer
     await userEvent.click(screen.getByRole('button', { name: 'Can I reach my target?' }));
     expect(await screen.findByText(/average GPA of 3.675/)).toBeTruthy();
     expect(screen.getByText(/Checked required average/)).toBeTruthy();
     expect(screen.getByText('AI suggestion')).toBeTruthy();
     expect(screen.queryByText(/Could not verify/)).toBeNull();
+    // keyboard use: focus returns to the question box after an answer
+    expect(document.activeElement).toBe(screen.getByLabelText('Your question'));
+  });
+  it('every control on the page has an accessible name', async () => {
+    mockModel([]);
+    await openAdvisor();
+    for (const el of [...screen.getAllByRole('button'), ...screen.getAllByRole('textbox'), ...screen.getAllByRole('combobox')]) {
+      expect((el.getAttribute('aria-label') || el.textContent || '').trim() || el.labels?.length, el.outerHTML).toBeTruthy();
+    }
   });
   it('warns about numbers the tools did not produce', async () => {
     mockModel([{ type: 'tool', tool: 'get_summary', args: {} }, { type: 'final', text: 'Your CGPA is 3.99.' }, { type: 'final', text: 'Your CGPA is 3.98.' }]);

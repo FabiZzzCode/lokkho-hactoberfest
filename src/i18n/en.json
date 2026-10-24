@@ -157,5 +157,7 @@
   "advisor.placeholder": "Ask about your CGPA…",
   "advisor.send": "Ask",
   "advisor.note": "All numbers come from plain code. The AI only explains. Predictions are estimates based on stated assumptions.",
-  "course.target": "Target grade: {grade}"
+  "course.target": "Target grade: {grade}",
+  "advisor.disclaimer": "Predictions are scenario ranges based on the marks you entered, not guarantees. Real results depend on your future marks and your university's rules.",
+  "advisor.log": "Conversation with the advisor"
 }
