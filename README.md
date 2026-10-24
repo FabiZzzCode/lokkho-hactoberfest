@@ -41,7 +41,10 @@ _To be added in `docs/screenshots/`._
 
 ## What's not done yet
 - Items still marked unverified above need confirmation from the student's department.
-- Cloud sync and photo import are optional and may be incomplete (see commit history).
+- Cloud sync (`api/profile.js`) is built and unit-tested against an in-memory store, but not yet tried against a live MongoDB Atlas cluster.
+- Photo import is optional and may be incomplete.
+- Screenshots and the live Vercel deployment are still to do.
+- The GitHub Actions workflow is kept in `ci-pending/ci.yml` until the push token has the `workflow` scope.
 
 ## Credits
 Built with help from Claude Code. I reviewed the code and can explain it. Gemma by Google. Hacktoberfest Hack Day Chittagong × IEEE CS IIUC SBC.
