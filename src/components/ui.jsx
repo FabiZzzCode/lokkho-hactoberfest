@@ -12,7 +12,7 @@ export const Notice = ({ kind = 'info', children }) => (
   <div className={`notice notice-${kind}`} role={kind === 'error' ? 'alert' : 'status'}>{children}</div>
 );
 
-export const Spinner = ({ label }) => <p className="muted" role="status" aria-live="polite">⏳ {label}</p>;
+export const Spinner = ({ label }) => <p className="muted spinner" role="status" aria-live="polite"><i className="spin" aria-hidden="true" />{label}</p>;
 
 export const Empty = ({ children }) => <p className="muted empty">{children}</p>;
 

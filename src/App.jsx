@@ -11,6 +11,7 @@ import Advisor from './features/advisor/Advisor.jsx';
 import AiImport from './features/ai-import/AiImport.jsx';
 import { sampleStudent } from './data/sampleStudent.js';
 import { Notice } from './components/ui.jsx';
+import Logo from './components/Logo.jsx';
 
 const NAV = ['dashboard', 'advisor', 'register', 'past', 'course', 'retake', 'import'];
 
@@ -49,7 +50,7 @@ function Shell({ lang, setLang, view, setView }) {
   return (
     <>
       <header className="top">
-        <h1>{t('app.name')} <span className="tag">{t('app.tagline')}</span></h1>
+        <h1 className="brand"><Logo size={34} /><span className="brand-text">{t('app.name')}<span className="tag">{t('app.tagline')}</span></span></h1>
         <div className="top-end">
           <label className="lang"><span className="sr">{t('app.language')}</span>
             <select value={lang} onChange={(e) => { setLang(e.target.value); if (profile) setProfile({ ...profile, language: e.target.value }); }}>
